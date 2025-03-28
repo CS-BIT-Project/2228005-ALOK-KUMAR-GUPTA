@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if image %}Edit Property{% else %}Upload New Property{% endif %} - Aawas.in</title>
+    <title>Aawas.in - Contact Us</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -94,8 +94,8 @@
             color: var(--accent-color);
             transform: rotate(90deg);
         }
-        /* Header Styling */
-        .form-header {
+        /* Contact Header Styling */
+        .contact-header {
             text-align: center;
             padding: 50px 20px;
             background: var(--gradient);
@@ -104,14 +104,20 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
-        .form-header h1 {
+        .contact-header h1 {
             font-size: 3rem;
             margin-bottom: 15px;
             font-weight: 700;
         }
+        .contact-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
         /* Form Styling */
-        .form-card {
-            max-width: 700px;
+        .contact-form {
+            max-width: 600px;
             margin: 40px auto;
             background: #fff;
             padding: 2rem;
@@ -147,54 +153,6 @@
             height: 150px;
             resize: vertical;
         }
-        .file-upload {
-            position: relative;
-            display: block;
-            width: 100%;
-            padding: 2rem;
-            border: 2px dashed var(--primary-color);
-            border-radius: 6px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            margin-bottom: 1rem;
-        }
-        .file-upload:hover {
-            background: rgba(108, 99, 255, 0.05);
-            border-color: var(--secondary-color);
-        }
-        .file-upload input[type="file"] {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            cursor: pointer;
-        }
-        .file-upload-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        .file-upload-text {
-            color: #555;
-            font-size: 1rem;
-        }
-        .current-file {
-            display: flex;
-            align-items: center;
-            padding: 0.8rem;
-            background: rgba(108, 99, 255, 0.1);
-            border-radius: 6px;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: var(--dark-color);
-        }
-        .current-file i {
-            margin-right: 0.5rem;
-            color: var(--primary-color);
-        }
         .btn {
             display: block;
             width: 100%;
@@ -229,6 +187,24 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+        /* Footer Styling */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
         /* Responsive Design */
         @media (max-width: 768px) {
             .navbar {
@@ -255,10 +231,13 @@
             .menu-toggle {
                 display: block;
             }
-            .form-header h1 {
+            .contact-header h1 {
                 font-size: 2rem;
             }
-            .form-card {
+            .contact-header p {
+                font-size: 1rem;
+            }
+            .contact-form {
                 padding: 1.5rem;
             }
         }
@@ -293,61 +272,29 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        <div class="form-header">
-            <h1>{% if image %}Edit Property{% else %}Upload New Property{% endif %}</h1>
+        <div class="contact-header">
+            <h1>Contact Us</h1>
+            <p>We’d love to hear from you! Reach out with any questions or feedback.</p>
         </div>
-        <div class="form-card">
-            <form method="POST" enctype="multipart/form-data" action="{% if image %}{{ url_for('edit_image', image_id=image._id) }}{% else %}{{ url_for('insert') }}{% endif %}">
+        <div class="contact-form">
+            <form action="{{ url_for('contact') }}" method="POST">
                 <div class="form-group">
-                    <label for="name">Property Name</label>
-                    <input type="text" id="name" name="name" value="{% if image %}{{ image.name }}{% endif %}" placeholder="Enter property name" required>
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="description">Property Description</label>
-                    <textarea id="description" name="description" placeholder="Enter property description" required>{% if image %}{{ image.description }}{% endif %}</textarea>
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="location">Property Location</label>
-                    <input type="text" id="location" name="location" value="{% if image %}{{ image.location }}{% endif %}" placeholder="Enter property location (e.g., Delhi)" required>
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" required></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="contact_name">Contact Name</label>
-                    <input type="text" id="contact_name" name="contact_name" value="{% if image %}{{ image.contact_name }}{% endif %}" placeholder="Enter contact name" required>
-                </div>
-                <div class="form-group">
-                    <label for="contact_email">Contact Email</label>
-                    <input type="email" id="contact_email" name="contact_email" value="{% if image %}{{ image.contact_email }}{% endif %}" placeholder="Enter contact email" required>
-                </div>
-                <div class="form-group">
-                    <label for="contact_phone">Contact Phone</label>
-                    <input type="text" id="contact_phone" name="contact_phone" value="{% if image %}{{ image.contact_phone }}{% endif %}" placeholder="Enter contact phone" required>
-                </div>
-                <div class="form-group">
-                    <label>Property Image</label>
-                    <label class="file-upload">
-                        <div class="file-upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <div class="file-upload-text">
-                            <strong>Click to select</strong> or drag and drop your image<br>
-                            <small>Supported formats: JPG, PNG, GIF</small>
-                        </div>
-                        <input type="file" name="image" id="image" accept="image/*" multiple {% if not image %}required{% endif %}>
-                    </label>
-                    <div id="file-list" class="file-list">
-                        {% if image %}
-                            <div class="current-file">
-                                <i class="fas fa-image"></i>
-                                <span>Current file: {{ image.filename }}</span>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                <button type="submit" class="btn">
-                    <i class="fas {% if image %}fa-save{% else %}fa-upload{% endif %}"></i>
-                    {% if image %}Update Property{% else %}Upload Property{% endif %}
-                </button>
+                <button type="submit" class="btn">Send Message</button>
             </form>
+        </div>
+        <div class="footer">
+            <p>© {{ current_year }} Aawas.in. All rights reserved. | <a href="{{ url_for('contact') }}">Contact Us</a></p>
         </div>
     </div>
     <script>
@@ -356,33 +303,6 @@
             const navLinks = document.querySelector('.navbar ul');
             menuToggle.addEventListener('click', function () {
                 navLinks.classList.toggle('active');
-            });
-
-            const fileInput = document.getElementById('image');
-            const fileList = document.getElementById('file-list');
-            fileInput.addEventListener('change', function(event) {
-                fileList.innerHTML = '';
-                if (this.files.length > 0) {
-                    const ul = document.createElement('ul');
-                    ul.style.listStyleType = 'none';
-                    ul.style.padding = '0';
-                    ul.style.marginTop = '1rem';
-                    for (let i = 0; i < this.files.length; i++) {
-                        const li = document.createElement('li');
-                        li.style.display = 'flex';
-                        li.style.alignItems = 'center';
-                        li.style.gap = '0.5rem';
-                        li.style.padding = '0.5rem';
-                        li.style.background = 'rgba(108, 99, 255, 0.1)';
-                        li.style.borderRadius = '6px';
-                        li.style.marginBottom = '0.5rem';
-                        li.innerHTML = `<i class="fas fa-file-image" style="color: var(--primary-color);"></i> ${this.files[i].name}`;
-                        ul.appendChild(li);
-                    }
-                    fileList.appendChild(ul);
-                } else {
-                    fileList.textContent = 'No files selected';
-                }
             });
         });
     </script>
