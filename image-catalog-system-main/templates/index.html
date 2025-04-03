@@ -14,6 +14,7 @@
             --light-color: #f8f9fa;
             --dark-color: #212529;
             --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --approved-color: #28a745;
         }
         * {
             margin: 0;
@@ -24,8 +25,10 @@
         body {
             background-color: #f0f2f5;
             color: var(--dark-color);
+            overflow-x: hidden;
         }
-        /* Navbar Styling */
+        
+        /* ========== NAVBAR STYLES ========== */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -38,73 +41,131 @@
             z-index: 1000;
             border-bottom: 3px solid var(--accent-color);
         }
+        
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--accent-color);
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        .logo i {
-            color: var(--accent-color);
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .nav-links li {
-            position: relative;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-            font-size: 1rem;
-            font-weight: 500;
-            padding: 0.6rem 1.2rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
+        
         .nav-links a:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+        
         .nav-links a.active {
             background: var(--accent-color);
-            color: white;
         }
-        .user-info {
-            color: white;
-            font-size: 0.9rem;
-            font-weight: 400;
+        
+        /* Dropdown menu styles */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 100;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 0.75rem 1rem;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background: #f5f5f5;
+            color: var(--primary-color);
+        }
+        
+        /* User profile styles */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
             padding: 0.6rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
+            border-radius: 20px;
+            color: white;
         }
+        
+        .user-profile:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Mobile menu toggle */
         .menu-toggle {
             display: none;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
-        .menu-toggle:hover {
-            color: var(--accent-color);
-            transform: rotate(90deg);
-        }
-        /* Header Styling */
+        
+        /* ========== HEADER STYLES ========== */
         .header {
             background: var(--gradient);
-            padding: 2rem 0;
+            padding: 4rem 0;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
             position: relative;
             overflow: hidden;
         }
+        
         .header::before {
             content: "";
             position: absolute;
@@ -118,77 +179,126 @@
                     transparent 10px,
                     transparent 20px);
         }
+        
         .header h1 {
-            font-size: 4rem;
-            margin-bottom: 0.5rem;
-            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            font-weight: 800;
-            letter-spacing: 2px;
             position: relative;
         }
+        
         .header h1::after {
             content: "";
             display: block;
             width: 80px;
             height: 4px;
             background: var(--accent-color);
-            margin: 8px auto;
+            margin: 1rem auto;
             border-radius: 2px;
         }
+        
         .header p {
             font-size: 1.2rem;
-            color: white;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 2rem;
         }
-        .header .btn {
-            margin-top: 1.5rem;
-        }
-        /* Container and Other Styling */
+        
+        /* ========== MAIN CONTENT STYLES ========== */
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+            margin: 2rem auto;
+            padding: 0 2rem;
         }
+        
+        .search-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            min-width: 250px;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
+        
         .gallery-item {
             background: white;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
         }
-        .gallery-item.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        
         .gallery-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
+        
         .gallery-item img {
             width: 100%;
             height: 250px;
             object-fit: cover;
             display: block;
         }
+        
+        .status-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: white;
+            background: var(--approved-color);
+        }
+        
         .gallery-item-info {
             padding: 1.5rem;
         }
+        
         .gallery-item-title {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--dark-color);
         }
+        
         .gallery-item-description {
             font-size: 0.95rem;
             color: #555;
@@ -198,11 +308,16 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+        
         .gallery-item-location {
             font-size: 0.9rem;
             color: #777;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
+        
         .gallery-item-link {
             display: inline-block;
             margin-top: 1rem;
@@ -214,121 +329,110 @@
             font-weight: 500;
             transition: all 0.3s ease;
         }
+        
         .gallery-item-link:hover {
             transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+        
         .auth-message {
             text-align: center;
             margin: 2rem 0;
             padding: 2rem;
             background: rgba(58, 134, 255, 0.1);
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+        
         .auth-message h2 {
             font-size: 1.8rem;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            margin: 0.5rem;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
+        
         .btn-outline {
             background: transparent;
             border: 2px solid var(--primary-color);
             color: var(--primary-color);
         }
+        
         .btn-outline:hover {
             background: var(--primary-color);
             color: white;
         }
-        .search-bar {
-            margin: 2rem 0;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .search-input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid var(--primary-color);
-            border-radius: 30px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            min-width: 200px;
-        }
-        .search-input:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 10px rgba(131, 56, 236, 0.3);
-            outline: none;
-        }
+        
         .flash-message {
             padding: 1rem;
             margin: 1rem 0;
             border-radius: 8px;
             text-align: center;
         }
+        
         .success {
             background: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
+        
         .error {
             background: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-        /* Responsive Design */
+        
+        /* ========== RESPONSIVE STYLES ========== */
+        @media (max-width: 992px) {
+            .nav-links {
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
+                align-items: flex-start;
                 padding: 1rem;
             }
+            
+            .nav-container {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
             .nav-links {
                 display: none;
                 flex-direction: column;
                 width: 100%;
-                background: var(--gradient);
-                position: absolute;
-                top: 100%;
-                left: 0;
-                padding: 1rem 0;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                margin-top: 1rem;
             }
+            
             .nav-links.active {
                 display: flex;
             }
-            .nav-links li {
-                margin: 0.5rem 0;
+            
+            .dropdown-content {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                background: rgba(0,0,0,0.1);
             }
+            
+            .dropdown-content a {
+                color: white;
+                padding-left: 2rem;
+            }
+            
             .menu-toggle {
                 display: block;
             }
-            .user-info {
-                margin: 0.5rem 0;
-            }
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1.5rem;
-            }
+            
             .header h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
+            
             .search-bar {
                 flex-direction: column;
             }
@@ -336,41 +440,79 @@
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="logo">
+        <a href="{{ url_for('index') }}" class="logo">
             <i class="fas fa-home"></i> Aawas.in
+        </a>
+        
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}" class="{{ 'active' if request.endpoint == 'index' else '' }}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="{{ 'active' if request.endpoint == 'about' else '' }}"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="{{ url_for('contact') }}" class="{{ 'active' if request.endpoint == 'contact' else '' }}"><i class="fas fa-envelope"></i> Contact</a></li>
+                
+                {% if current_user %}
+                    <li class="dropdown">
+                        <a class="{{ 'active' if request.endpoint in ['my_properties', 'insert'] else '' }}">
+                            <i class="fas fa-building"></i> Properties <i class="fas fa-caret-down"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="{{ url_for('my_properties') }}"><i class="fas fa-list"></i> My Properties</a>
+                            <a href="{{ url_for('insert') }}"><i class="fas fa-upload"></i> Upload Property</a>
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+            
+            <ul class="nav-links">
+                {% if session.get('admin') %}
+                    <li><a href="{{ url_for('admin_panel') }}"><i class="fas fa-user-shield"></i> Admin</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('admin_login') }}"><i class="fas fa-user-cog"></i> Admin</a></li>
+                {% endif %}
+                
+                {% if current_user %}
+                    <li class="dropdown">
+                        <div class="user-profile">
+                            <div class="user-avatar">{{ current_user.email[0].upper() }}</div>
+                            <span>{{ current_user.email|truncate(15) }}</span>
+                            <i class="fas fa-caret-down"></i>
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    <li><a href="{{ url_for('signup') }}"><i class="fas fa-user-plus"></i> Signup</a></li>
+                {% endif %}
+            </ul>
+            
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="{{ url_for('index') }}" class="{{ 'active' if request.endpoint == 'index' else '' }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}" class="{{ 'active' if request.endpoint == 'about' else '' }}">About</a></li>
-            <li><a href="{{ url_for('contact') }}" class="{{ 'active' if request.endpoint == 'contact' else '' }}">Contact</a></li>
-            <li><a href="{{ url_for('my_properties') }}" class="{{ 'active' if request.endpoint == 'my_properties' else '' }}">My Properties</a></li>
-            {% if current_user %}
-                <li><a href="{{ url_for('my_images') }}" class="{{ 'active' if request.endpoint == 'my_images' else '' }}">My Images</a></li>
-                <li><a href="{{ url_for('insert') }}" class="{{ 'active' if request.endpoint == 'insert' else '' }}">Upload</a></li>
-                <li class="user-info"><i class="fas fa-user"></i> {{ current_user.email }}</li>
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
-            {% else %}
-                <li><a href="{{ url_for('login') }}" class="{{ 'active' if request.endpoint == 'login' else '' }}">Login</a></li>
-                <li><a href="{{ url_for('signup') }}" class="{{ 'active' if request.endpoint == 'signup' else '' }}">Signup</a></li>
-            {% endif %}
-        </ul>
-        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
     </nav>
+
+    <!-- Page Header -->
     <div class="header">
-        <h1>Aawas.in</h1>
-        <p>Discover Your Dream Property Today</p>
+        <h1>Welcome to Aawas.in</h1>
+        <p>Find your dream property with us</p>
         {% if current_user %}
             <a href="{{ url_for('my_properties') }}" class="btn">
                 <i class="fas fa-building"></i> View My Properties
             </a>
         {% else %}
             <a href="{{ url_for('login') }}" class="btn">
-                <i class="fas fa-sign-in-alt"></i> Login to View Your Properties
+                <i class="fas fa-sign-in-alt"></i> Login to Get Started
             </a>
         {% endif %}
     </div>
+
+    <!-- Main Content -->
     <div class="container">
+        <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -378,25 +520,20 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        {% if 'user_id' not in session %}
-            <div class="auth-message">
-                <h2>Join Our Creative Community</h2>
-                <p>Login to add your own properties or create an account to get started.</p>
-                <div>
-                    <a href="{{ url_for('login') }}" class="btn">Login to Add Properties</a>
-                    <a href="{{ url_for('signup') }}" class="btn btn-outline">Create Account</a>
-                </div>
-            </div>
-        {% endif %}
+        
+        <!-- Search Bar -->
         <form method="GET" action="{{ url_for('index') }}" class="search-bar">
-            <input type="text" name="search" class="search-input" placeholder="Search by Name..." value="{{ search_query }}">
-            <input type="text" name="location" class="search-input" placeholder="Search by Location..." value="{{ location_query }}">
+            <input type="text" name="search" class="search-input" placeholder="Search properties..." value="{{ request.args.get('search', '') }}">
+            <input type="text" name="location" class="search-input" placeholder="Search by location..." value="{{ request.args.get('location', '') }}">
             <button type="submit" class="btn"><i class="fas fa-search"></i> Search</button>
         </form>
-        <div class="gallery" id="imageGrid">
+        
+        <!-- Property Gallery -->
+        <div class="gallery">
             {% for image in images %}
                 <div class="gallery-item">
                     <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="{{ image.name }}">
+                    <span class="status-badge">Approved</span>
                     <div class="gallery-item-info">
                         <h3 class="gallery-item-title">{{ image.name }}</h3>
                         <p class="gallery-item-description">{{ image.description }}</p>
@@ -408,28 +545,30 @@
                 </div>
             {% else %}
                 <div class="auth-message">
-                    <p>No properties found. {% if 'user_id' not in session %}Login to upload properties!{% endif %}</p>
+                    <p>No approved properties found. {% if not current_user %}Login to upload properties!{% endif %}</p>
+                    {% if current_user %}
+                        <a href="{{ url_for('insert') }}" class="btn">Upload Now</a>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
     </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-
-            // Load animation for gallery items
-            galleryItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add('loaded');
-                }, 100 * index);
+        // Mobile menu toggle functionality
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelectorAll('.nav-links').forEach(function(nav) {
+                nav.classList.toggle('active');
             });
-
-            // Mobile menu toggle
-            menuToggle.addEventListener('click', function () {
-                navLinks.classList.toggle('active');
-            });
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-content').forEach(function(dropdown) {
+                    dropdown.style.display = 'none';
+                });
+            }
         });
     </script>
 </body>
