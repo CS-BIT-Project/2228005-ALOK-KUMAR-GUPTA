@@ -41,15 +41,8 @@
 5. Run the Flask server:
     ```bash
     python app.py
-6. Project Structure (Example)
-aawas.in/
-├── static/
-│   └── css/, images/
-├── templates/
-│   └── HTML files (login.html, dashboard.html, etc.)
-├── app.py
-├── requirements.txt
-└── README.md
+Live demo:-  https://realestate-app-krsf.onrender.com
+
 
 
 
