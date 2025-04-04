@@ -32,12 +32,15 @@
    git clone https://github.com/yourusername/aawas.in.git
    cd aawas.in
 2. Create a virtual environment & activate it (optional but recommended):
-   python -m venv venv
+   ```bash
+    python -m venv venv
    source venv/bin/activate # On Windows: venv\Scripts\activate
-3. Install dependencies:
-    pip install -r requirements.txt
-4. Run the Flask server:
-   python app.py
+4. Install dependencies:
+     ```bash
+     pip install -r requirements.txt
+5. Run the Flask server:
+    ```bash
+    python app.py
 6. Project Structure (Example)
 aawas.in/
 ├── static/
